@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Irregular Verbs</string>
+    <string name="title_activity_main">Irregular Verbs</string>
+    <string name="package_name">cat.apps4all.verbsirregulars</string>
+    <string name="custom_url_scheme">cat.apps4all.verbsirregulars</string>
+</resources>

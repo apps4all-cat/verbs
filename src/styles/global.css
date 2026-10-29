@@ -1,0 +1,391 @@
+@import './apps4all.css';
+
+@font-face {
+  font-family: 'Fredoka';
+  src: url('../assets/fonts/Fredoka-Variable.woff2') format('woff2');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Estètica de videojoc fosca (2n d'ESO), sobre l'índigo de la marca Apps4All. El tema clar és a sota. */
+:root {
+  --bg: var(--a4a-background-dark);
+  --bg-glow: #2a1f6e;
+  --surface: #221f4a;
+  --surface-2: #2d2960;
+  --ink: #f3f2ff;
+  --ink-muted: #b4b1d6;
+  --ink-faint: #6f6b99;
+  --brand: var(--a4a-brand-500);
+  --brand-dark: var(--a4a-brand-800);
+  --accent: #a5f3fc;
+  --pink: #ff5fa2;
+  --pink-dark: #c93a79;
+  --yellow: #ffd166;
+  --orange: #fb923c;
+  --green: #34d399;
+  --green-dark: #0f9d6e;
+  --blue: #38bdf8;
+  --blue-dark: #0b7fb3;
+  --red: #f87171;
+  --red-dark: #c53a3a;
+  --purple: #a78bfa;
+  --purple-dark: #6d4fd8;
+  /* línies, ombres i fons tenyits que depenen del tema */
+  --line: rgba(165, 180, 252, 0.12);
+  --shadow: #15123a;
+  --card-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+  --input-bg: #15132f;
+  --ok-bg: #0c3326;
+  --ko-bg: #3a1416;
+  --tint-green: #0f5e45;
+  --tint-orange: #7c3a0a;
+  --tint-yellow: #3b2a05;
+  --star-off: #3b3770;
+  --star-off-line: #4a4590;
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  color-scheme: dark;
+}
+
+/* Tema clar: els mateixos colors de joc, més foscos perquè es llegeixin sobre blanc. */
+:root[data-theme='light'] {
+  --bg: var(--a4a-background);
+  --bg-glow: #dcdaff;
+  --surface: #ffffff;
+  --surface-2: #e8e6fb;
+  --ink: #1c1940;
+  --ink-muted: #565280;
+  --ink-faint: #8f8bb3;
+  --accent: #0e7490;
+  --pink: #db2777;
+  --pink-dark: #9d174d;
+  --yellow: #b45309;
+  --orange: #c2410c;
+  --green: #047857;
+  --green-dark: #0f9d6e;
+  --blue: #0369a1;
+  --red: #dc2626;
+  --purple: #6d28d9;
+  --line: rgba(79, 70, 229, 0.16);
+  --shadow: #c9c5ee;
+  --card-shadow: 0 6px 18px rgba(55, 48, 163, 0.12);
+  --input-bg: #f7f6ff;
+  --ok-bg: #dcfce7;
+  --ko-bg: #fee2e2;
+  --tint-green: #bbf7d0;
+  --tint-orange: #fed7aa;
+  --tint-yellow: #fef3c7;
+  --star-off: #dedcf5;
+  --star-off-line: #c4c0ea;
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Fredoka', system-ui, sans-serif;
+  background: radial-gradient(circle at 15% -10%, var(--bg-glow), var(--bg) 55%) fixed, var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+  user-select: none;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  font-family: inherit;
+}
+
+.app-shell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto;
+  padding: calc(env(safe-area-inset-top, 0px) + 14px) 16px calc(env(safe-area-inset-bottom, 0px) + 16px);
+  position: relative;
+}
+
+.btn {
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-family: inherit;
+  font-size: 1.05rem;
+  padding: 13px 24px;
+  color: #fff;
+  background: var(--brand);
+  box-shadow: 0 5px 0 var(--brand-dark);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 var(--brand-dark);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.btn--pink {
+  background: var(--pink);
+  box-shadow: 0 5px 0 var(--pink-dark);
+}
+.btn--pink:active {
+  box-shadow: 0 1px 0 var(--pink-dark);
+}
+.btn--green {
+  background: var(--green-dark);
+  box-shadow: 0 5px 0 #08664a;
+}
+.btn--green:active {
+  box-shadow: 0 1px 0 #08664a;
+}
+.btn--blue {
+  background: var(--blue-dark);
+  box-shadow: 0 5px 0 #075b82;
+}
+.btn--blue:active {
+  box-shadow: 0 1px 0 #075b82;
+}
+.btn--purple {
+  background: var(--purple-dark);
+  box-shadow: 0 5px 0 #4c33a8;
+}
+.btn--ghost {
+  background: var(--surface-2);
+  color: var(--ink);
+  box-shadow: 0 4px 0 var(--shadow);
+}
+.btn--ghost:active {
+  box-shadow: 0 1px 0 var(--shadow);
+}
+.btn--small {
+  padding: 8px 14px;
+  font-size: 0.92rem;
+}
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  box-shadow: var(--card-shadow);
+}
+
+.answer-input {
+  font-size: 1.2rem;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 3px solid var(--surface-2);
+  width: 100%;
+  text-align: center;
+  font-family: inherit;
+  outline: none;
+  background: var(--input-bg);
+  color: var(--ink);
+  user-select: text;
+}
+.answer-input:focus {
+  border-color: var(--brand);
+}
+.answer-input--ok {
+  border-color: var(--green);
+  background: var(--ok-bg);
+}
+.answer-input--ko {
+  border-color: var(--red);
+  background: var(--ko-bg);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-muted);
+}
+
+.label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+  font-weight: 700;
+}
+
+.bounce-in {
+  animation: bounceIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  70% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pop {
+  animation: pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes pop {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.shake {
+  animation: shake 0.4s ease;
+}
+@keyframes shake {
+  10%,
+  90% {
+    transform: translateX(-4px);
+  }
+  20%,
+  80% {
+    transform: translateX(6px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-9px);
+  }
+  40%,
+  60% {
+    transform: translateX(9px);
+  }
+}
+
+.pulse {
+  animation: pulse 0.9s ease-in-out infinite;
+}
+@keyframes pulse {
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+.combo {
+  animation: combo 0.5s ease both;
+}
+@keyframes combo {
+  0% {
+    transform: scale(1.6) rotate(-6deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+
+.combo-glow {
+  animation: glow 1.2s ease-in-out infinite alternate;
+}
+.combo-glow--2 {
+  --glow: var(--yellow);
+}
+.combo-glow--3 {
+  --glow: var(--pink);
+  animation-duration: 0.6s;
+}
+@keyframes glow {
+  from {
+    box-shadow: 0 0 6px var(--glow);
+    border-color: var(--glow);
+  }
+  to {
+    box-shadow: 0 0 22px var(--glow);
+    border-color: var(--accent);
+  }
+}
+
+/* Simulacre d'examen: la taula de quatre columnes del full. */
+.sim-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1.15fr;
+  gap: 4px;
+  align-items: start;
+  padding: 5px 0;
+  border-top: 1px solid var(--line);
+}
+.sim-head {
+  border-top: none;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 700;
+  color: var(--ink-muted);
+  text-align: center;
+}
+.sim-given {
+  font-weight: 700;
+  font-size: 0.92rem;
+  text-align: center;
+  padding: 8px 2px;
+  overflow-wrap: anywhere;
+}
+.sim-given--ca {
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+}
+.answer-input.sim-input {
+  font-size: 0.9rem;
+  padding: 7px 3px;
+  border-width: 2px;
+  border-radius: 10px;
+}
+.sim-fix {
+  font-size: 0.78rem;
+  color: var(--green);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+::selection {
+  background: var(--brand);
+}

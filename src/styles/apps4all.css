@@ -1,0 +1,26 @@
+/* Apps4All · Proposta 1 «The Core Shield». Generat a partir de tokens.json */
+:root {
+  --a4a-brand-50: #EEF2FF;
+  --a4a-brand-100: #E0E7FF;
+  --a4a-brand-200: #C7D2FE;
+  --a4a-brand-300: #A5B4FC;
+  --a4a-brand-400: #818CF8;
+  --a4a-brand-500: #6366F1;
+  --a4a-brand-600: #4F46E5;
+  --a4a-brand-700: #4338CA;
+  --a4a-brand-800: #3730A3;
+  --a4a-brand-900: #312E81;
+
+  --a4a-primary: #4F46E5;
+  --a4a-on-primary: #FFFFFF;
+  --a4a-danger: #EF4444;
+  --a4a-surface: #FFFFFF;
+  --a4a-surface-dark: #1E1B4B;
+  --a4a-ink: #1E1B4B;
+  --a4a-ink-muted: #5B5F7A;
+  --a4a-background: #F5F7FF;
+  --a4a-background-dark: #121124;
+
+  --a4a-radius-card: 24px;
+  --a4a-radius-button: 16px;
+}
